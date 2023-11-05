@@ -1,0 +1,50 @@
+#include <iostream>
+
+void Test(int& a, int& b) {
+    std::cout << "Enter your first number: ";
+    std::cin >> a;
+    std::cout << "Enter your second number: ";
+    std::cin >> b;
+}
+
+int main() {
+    std::cout << "Calculator!\n";
+    int a, b, c;
+    bool test;
+    std::cout << "Enter your first number: ";
+    std::cin >> a;
+    std::cout << "Enter your second number: ";
+    std::cin >> b;
+
+    std::cout << "Did you input your numbers correctly? Type 1 for yes and 0 for no: ";
+    std::cin >> test;
+
+    if (test == 0) {
+        std::cout << "Incorrect choice!" << std::endl;
+        Test(a, b);
+    }
+
+    std::cout << "Choose an operation!\n";
+    std::cout << " 1 - Addition \n 2 - Subtraction \n 3 - Multiplication \n 4 - Division \n 5 - Modulus" << std::endl;
+    std::cout << "Your choice: ";
+    std::cin >> c;
+
+    switch (c) {
+    case 1:
+        std::cout << a + b;
+        break;
+    case 2:
+        std::cout << a - b;
+        break;
+    case 3:
+        std::cout << a * b;
+        break;
+    case 4:
+        std::cout << a / b;
+        break;
+    case 5:
+        std::cout << a % b;
+        break;
+    }
+    return 0;
+}
