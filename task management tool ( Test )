@@ -1,0 +1,157 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+std::vector<std::string> projectList;
+
+void add()
+{
+    std::string Name, Opis, Status;
+    Status = "Nowe";
+    std::cout << "Dodajemy\nNazwa nowego zadania\n";
+    std::cin >> Name;
+    std::cout << "Dodajemy opis twojego zadania\n";
+    std::cin.ignore();
+    std::getline(std::cin, Opis);
+    std::cout << "\n";
+
+    std::string project = "Nazwa: " + Name + ", Opis: " + Opis + ", Status: " + Status;
+    projectList.push_back(project);
+
+    std::cout << "Twoj opis to\n" << Name << "\nA twoj opis to :\n" << Opis << "\nStatus: " << Status << "\n" << std::endl;
+
+    std::cout << "Czy chcesz dodac cos jeszcze, edytowac, czy usunac? (T/N)" << std::endl;
+    char decision;
+    std::cin >> decision;
+
+    if (decision == 'T' || decision == 't')
+    {
+        add();
+    }
+    else
+    {
+        std::cout << "Zakonczono dodawanie." << std::endl;
+    }
+}
+
+void changeDetails()
+{
+    std::string OptionCheck;
+    int b;
+    OptionCheck = "Co chcesz zmienic:\n1 - Nazwe\n2 - Opis\n3 - Status\n";
+    std::cout << OptionCheck << std::endl;
+    std::cin >> b;
+
+    switch (b)
+    {
+    case 1:
+        std::cout << "Podaj poprzednia nazwe: ";
+        // logic to change the name
+        break;
+    case 2:
+        std::cout << "Podaj poprzedni opis: ";
+        // logic to change the description
+        break;
+    case 3:
+        std::cout << "Podaj poprzedni status: ";
+        // logic to change the status
+        break;
+    }
+
+    std::cout << "Czy chcesz dodac cos jeszcze, edytowac, czy usunac? (T/N)" << std::endl;
+    char decision;
+    std::cin >> decision;
+
+    if (decision == 'T' || decision == 't')
+    {
+        changeDetails();
+    }
+    else
+    {
+        std::cout << "Zakonczono edycje." << std::endl;
+    }
+}
+
+void deleteDetails()
+{
+    int c;
+    std::string OptionCheck;
+    OptionCheck = "Co chcesz usunac:\n1 - Nazwe projektu\n2 - Opis projektu\n";
+    std::cout << OptionCheck << std::endl;
+    std::cin >> c;
+
+    switch (c)
+    {
+    case 1:
+        std::cout << "Podaj poprzednia nazwe: ";
+        // logic to delete the name
+        break;
+    case 2:
+        std::cout << "Podaj poprzedni opis: ";
+        // logic to delete the description
+        break;
+    }
+
+    std::cout << "Czy chcesz usunac cos jeszcze? (T/N)" << std::endl;
+    char decision;
+    std::cin >> decision;
+
+    if (decision == 'T' || decision == 't')
+    {
+        deleteDetails();
+    }
+    else
+    {
+        std::cout << "Zakonczono usuwanie." << std::endl;
+    }
+}
+
+void viewAllProjects()
+{
+    std::cout << "Wszystkie projekty:" << std::endl;
+    for (auto project : projectList)
+    {
+        std::cout << project << std::endl;
+    }
+    std::cout << "Koniec listy." << std::endl;
+}
+
+int main()
+{
+    std::string OptionCheck;
+    int a;
+    OptionCheck = "Co chcesz zrobic:\n1 - Dodac\n2 - Zmienic\n3 - Usunac\n4 - Wyswietl wszystkie projekty\n";
+    std::cout << OptionCheck << std::endl;
+    std::cin >> a;
+
+    switch (a)
+    {
+    case 1:
+        add();
+        break;
+    case 2:
+        changeDetails();
+        break;
+    case 3:
+        deleteDetails();
+        break;
+    case 4:
+        viewAllProjects();
+        break;
+    }
+
+    std::cout << "Czy chcesz zakonczyc program? (T/N)" << std::endl;
+    char decision;
+    std::cin >> decision;
+
+    if (decision == 'T' || decision == 't')
+    {
+        std::cout << "Zakonczono program." << std::endl;
+    }
+    else
+    {
+        main();
+    }
+
+    return 0;
+}
