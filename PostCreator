@@ -1,0 +1,71 @@
+#include <iostream>
+#include <vector>
+
+int main() {
+    std::vector<std::string> users;
+    std::vector<std::string> posts;
+    std::vector<std::string> postAuthors;
+    bool Useradd = false;
+    bool Postadd = false;
+    std::string user;
+    std::string post;
+    std::string author;
+
+    if (users.empty()) {
+        std::cout << "No users found. Do you want to add a user? (Y/N): ";
+        char decision;
+        std::cin >> decision;
+
+        if (decision == 'Y' || decision == 'y') {
+            std::cout << "Enter the name of the new user: ";
+            std::cin >> user;
+            users.push_back(user);
+            Useradd = true;
+        }
+        else {
+            std::cout << "New user is not added" << std::endl;
+            return 0;
+        }
+    }
+
+    if (Useradd) {
+        std::cout << "New user " << user << " added." << std::endl;
+    }
+
+    if (posts.empty()) {
+        std::cout << "No posts found. Do you want to add a post? (Y/N): ";
+        char decision;
+        std::cin >> decision;
+
+        if (decision == 'Y' || decision == 'y') {
+            std::cout << "Enter the post text: ";
+            std::cin >> post;
+            std::cout << "Enter the author of the post: ";
+            std::cin >> author;
+            posts.push_back(post);
+            postAuthors.push_back(author);
+            Postadd = true;
+        }
+        else {
+            std::cout << "No new posts added" << std::endl;
+            return 0;
+        }
+    }
+
+    if (Postadd) {
+        std::cout << "New post added by " << author << ": " << post << std::endl;
+    }
+
+    std::cout << "List of users: ";
+    for (const auto& u : users) {
+        std::cout << u << ", ";
+    }
+    std::cout << std::endl;
+
+    std::cout << "List of posts: " << std::endl;
+    for (size_t i = 0; i < posts.size(); i++) {
+        std::cout << "Author: " << postAuthors[i] << ", Post: " << posts[i] << std::endl;
+    }
+
+    return 0;
+}
