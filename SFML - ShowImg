@@ -1,0 +1,44 @@
+#include <SFML/Graphics.hpp>
+#include <iostream>
+
+int main()
+{
+    // Create the main window
+    sf::RenderWindow window(sf::VideoMode(1420, 1080), "SFML Image Display");
+
+    // Load image from file on the desktop
+    sf::Texture texture;
+    if (!texture.loadFromFile(R"(C:\Users\marci\Desktop\SFMLIMG\Red.jpg)")) // Replace with the path to your image
+    {
+        std::cerr << "Failed to load image" << std::endl;
+        return 1;
+    }
+
+    // Create a sprite
+    sf::Sprite sprite;
+    sprite.setTexture(texture);
+
+    // Start the game loop
+    while (window.isOpen())
+    {
+        // Process events
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            // Close window: exit
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+
+        // Clear screen
+        window.clear();
+
+        // Draw the sprite
+        window.draw(sprite);
+
+        // Update the window
+        window.display();
+    }
+
+    return 0;
+}
